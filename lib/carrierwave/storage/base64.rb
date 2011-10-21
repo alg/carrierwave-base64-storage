@@ -25,7 +25,7 @@ module CarrierWave
 
         def url
           d = self.data[:data]
-          d ? "data:#{self.data[:content_type]};base64,#{d}" : nil
+          d ? "data:#{self.data[:content_type] || 'image/png'};base64,#{d}" : nil
         end
 
         def store(file)
@@ -38,14 +38,12 @@ module CarrierWave
           self.data[:content_type]
         end
            
-        private
-        
         def data=(v)
-          @uploader.model.send("#{@uploader.mounted_as}=", v)
+          @uploader.model.attributes["#{@uploader.mounted_as}_data"] = v
         end
         
         def data
-          @uploader.model.send(@uploader.mounted_as)
+          @uploader.model.attributes["#{@uploader.mounted_as}_data"] || {}
         end
       end
 
