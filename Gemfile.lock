@@ -1,0 +1,20 @@
+PATH
+  remote: .
+  specs:
+    carrierwave-base64-storage (1.0)
+      carrierwave
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.1.1)
+      multi_json (~> 1.0)
+    carrierwave (0.5.7)
+      activesupport (~> 3.0)
+    multi_json (1.0.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  carrierwave-base64-storage!
