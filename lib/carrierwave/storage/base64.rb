@@ -39,11 +39,16 @@ module CarrierWave
         end
            
         def data=(v)
-          @uploader.model.attributes["#{@uploader.mounted_as}_data"] = v
+          m, f = @uploader.model, @uploader.mounted_as
+          updated = m.send("#{f}_data") != v
+          if updated
+            m.send("#{f}_data=", v)
+            m.save
+          end
         end
         
         def data
-          @uploader.model.attributes["#{@uploader.mounted_as}_data"] || {}
+          @uploader.model.send("#{@uploader.mounted_as}_data") || {}
         end
       end
 
