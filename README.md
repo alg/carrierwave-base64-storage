@@ -20,17 +20,17 @@ In your uploader specify the storage:
       storage :base64
     end
 
-When you mount the uploader on a `field`, it uses `field_data` attribute
+IMPORTANT: When you mount the uploader on a `field`, it uses `field_data` attribute
 on the model to store the actual data, and so make sure the field exists
-in your storage.
+in your model and is able to fit long text blobs (`TEXT` in SQL).
 
-Example for the active record:
+Example for the ActiveRecord:
 
     class User < ActiveRecord::Base
       mount_uploader :avatar, AvatarUploader
     end
 
-(Will be using `avatar_data` for the actual data and the content type.)
+(It will be using `avatar_data` for the actual data and the content type.)
 
 
 License
